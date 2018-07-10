@@ -13,6 +13,7 @@ class Api::ContactsController < ApplicationController
   def create
     @contact = Contact.new(
       first_name: "#{params[:input_first_name]}",
+      middle_name: "#{params[:input_middle_name]}",
       last_name: "#{params[:input_last_name]}",
       email: "#{params[:input_email]}",
       phone_number: "#{params[:input_phone_number]}"
@@ -25,6 +26,7 @@ class Api::ContactsController < ApplicationController
     contact_id = params[:id]
     @contact = Contact.find_by(id: contact_id)
     @contact.first_name = params[:input_first_name] || @contact.first_name
+    @contact.middle_name = params[:input_middle_name] || @contact.middle_name
     @contact.last_name = params[:input_last_name] || @contact.last_name
     @contact.email = params[:input_email] || @contact.last_name
     @contact.phone_number = params[:input_phone_number] || @contact.phone_number
