@@ -8,7 +8,15 @@
 
 #you are on the right track.... let me just finish cleaning up your other app
 
-100.times do
-  contact = Contact.new(first_name: "#{Faker::Name.first_name}", last_name: "#{Faker::Name.last_name}", email: "#{Faker::Internet.email}", phone_number: "#{Faker::PhoneNumber.phone_number}")
+# 100.times do
+#   contact = Contact.new(first_name: "#{Faker::Name.first_name}", last_name: "#{Faker::Name.last_name}", email: "#{Faker::Internet.email}", phone_number: "#{Faker::PhoneNumber.phone_number}")
+#   contact.save
+# end
+
+contacts = Contact.all
+users = User.all
+
+contacts.each do |contact|
+  contact.user_id = users.sample.id
   contact.save
 end
