@@ -13,10 +13,22 @@
 #   contact.save
 # end
 
+# contacts = Contact.all
+# users = User.all
+
+# contacts.each do |contact|
+#   contact.user_id = users.sample.id
+#   contact.save
+# end
+
+# associate groups with contacts
+
 contacts = Contact.all
-users = User.all
+groups = Group.all
 
 contacts.each do |contact|
-  contact.user_id = users.sample.id
-  contact.save
+  first_group = groups.shuffle.pop.id
+  second_group = groups.shuffle.pop.id
+  ContactGroup.create(contact_id: contact.id, group_id: first_group)
+  ContactGroup.create(contact_id: contact.id, group_id: second_group)
 end

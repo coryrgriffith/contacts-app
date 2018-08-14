@@ -1,13 +1,13 @@
 class Api::ContactsController < ApplicationController
   def index
-    @contacts = Contact.all
-    # contacts = Contact.all
-    # contacts.each do |contact|
-    #   if contact.user_id == current_user.id
-    #     @contacts << contact
-    #   end
-    # end
-    render "index.json.jbuilder"
+    if current_user
+      @contacts = current_user.contacts
+      render "index.json.jbuilder"
+    else  
+      render json: []
+    end
+    # @contacts = Contact.all
+    # render "index.json.jbuilder"
   end
 
   def show
