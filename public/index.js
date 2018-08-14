@@ -6,7 +6,15 @@ var HomePage = {
     return {
       message: "Welcome to Vue.js!",
       contacts: [],
-      selectedContact: []
+      selectedContact: [],
+      editedContact: {
+        first_name: "", 
+        middle_name: "",
+        last_name: "", 
+        email: "",
+        bio: "",
+        id: ""
+      }
     };
   },
   created: function() {
@@ -17,6 +25,21 @@ var HomePage = {
   methods: {
     changeContact: function(inputContact) {
       this.selectedContact = inputContact;
+    },
+    setEditedContact: function(inputContact) {
+      this.editedContact = inputContact;
+    },
+    editContact: function() {
+      var params = {
+        input_first_name: this.editedContact.first_name, 
+        input_middle_name: this.editedContact.middle_name,
+        input_last_name: this.editedContact.last_name, 
+        input_email: this.editedContact.email,
+        input_bio: this.editedContact.bio
+      };
+      axios.patch('/api/contacts/' + this.editedContact.id, params).then(function(response) {
+        // console.log("in edit");
+      });
     }
   },
   computed: {}

@@ -36,7 +36,7 @@ class Api::ContactsController < ApplicationController
     @contact.first_name = params[:input_first_name] || @contact.first_name
     @contact.middle_name = params[:input_middle_name] || @contact.middle_name
     @contact.last_name = params[:input_last_name] || @contact.last_name
-    @contact.email = params[:input_email] || @contact.last_name
+    @contact.email = params[:input_email] || @contact.email
     @contact.phone_number = params[:input_phone_number] || @contact.phone_number
     @contact.bio = params[:input_bio] || @contact.bio
     @contact.save

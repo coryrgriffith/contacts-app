@@ -73,9 +73,13 @@
 
     <div v-for="contact in contacts">
       <p>First Name: {{ contact.first_name }}</p>
-
+      <!-- Show Modal -->
       <button v-on:click="changeContact(contact)"type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         See More Info
+      </button>
+      <!-- Edit Modal -->
+      <button v-on:click="setEditedContact(contact)"type="button" class="btn btn-info" data-toggle="modal" data-target="#editModal">
+        Edit Contact
       </button>
     </div>
 
@@ -95,6 +99,46 @@
             <p>Email: {{ selectedContact.email }}</p>
             <p>Phone Number: {{ selectedContact.phone_number }}</p>
             <p>Bio: {{ selectedContact.bio }}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label>First Name:</label> 
+              <input type="text" class="form-control" v-model="editedContact.first_name">
+            </div>
+            <div class="form-group">
+              <label>Middle Name:</label>
+              <input type="text" class="form-control" v-model="editedContact.middle_name">
+            </div>
+            <div class="form-group">
+              <label>Last Name:</label>
+              <input type="text" class="form-control" v-model="editedContact.last_name">
+            </div>
+            <div class="form-group">
+              <label>Email:</label>
+              <input type="email" class="form-control" v-model="editedContact.email">
+            </div>
+            <div class="form-group">
+              <label>Bio:</label>
+              <input type="text" class="form-control" v-model="editedContact.bio">
+            </div>
+            <button data-dismiss="modal" class="btn btn-primary" v-on:click="editContact()">Submit</button> 
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
