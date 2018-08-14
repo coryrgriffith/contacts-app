@@ -5,7 +5,8 @@ var HomePage = {
   data: function() {
     return {
       message: "Welcome to Vue.js!",
-      contacts: []
+      contacts: [],
+      selectedContact: []
     };
   },
   created: function() {
@@ -13,7 +14,11 @@ var HomePage = {
       this.contacts = response.data;
     }.bind(this));
   },
-  methods: {},
+  methods: {
+    changeContact: function(inputContact) {
+      this.selectedContact = inputContact;
+    }
+  },
   computed: {}
 };
 
@@ -27,7 +32,6 @@ var NewContactPage = {
       last_name: "",
       email: "",
       bio: "",
-      
       errors: []
     };
   },
